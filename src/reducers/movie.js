@@ -1,18 +1,20 @@
-const initial_state = {
+const initialState = {
   movieList: [],
-  page: 0
+  page: 0,
 };
 
-export default (state = initial_state, action) => {
+export default (state = initialState, action) => {
+  let addMovie;
+  if (action && action.payload && action.payload.data) {
+    addMovie = state.movieList.concat(action.payload.data);
+  }
   switch (action.type) {
     case 'movie':
-      const addMovie = state.movieList.concat(action.payload.data);
       return {
         movieList: addMovie,
-        page: action.payload.page
-      }
+        page: action.payload.page,
+      };
     default:
       return state;
   }
-
-}
+};

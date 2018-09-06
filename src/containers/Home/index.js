@@ -7,7 +7,7 @@ import CardMovie from '../../components/CardMovie';
 import Loader from '../../components/Loader';
 import { apiHostNew } from '../../config';
 import { connect } from 'react-redux';
-import { addMovieList } from '../../action';
+import addMovieList from '../../action';
 
 class Home extends Component {
   constructor(props) {
@@ -60,6 +60,11 @@ class Home extends Component {
       .then((response) => response.json())
       .then((res) => {
         this.props.addMovieList(res.results, page);
+        if (page !== 1) {
+          this.props.history.push(`/?page=${page}`);
+        } else {
+          this.props.history.push('/')
+        }
         this.setState({
           loading: false,
           canLoad: true

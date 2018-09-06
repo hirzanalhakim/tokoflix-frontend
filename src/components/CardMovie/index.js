@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardImg } from 'reactstrap';
 import * as moment from 'moment';
+import { FaMoneyBillWave } from 'react-icons/fa';
 
 export default class CardMovie extends Component {
 
@@ -27,7 +28,6 @@ export default class CardMovie extends Component {
 
   render() {
     return (
-      this.props.data && 
       <Card style={{ marginBottom: '15px' }} className="card-container" onClick={this.props.clickCard}>
         <div className="overlay">
           <div className="card-title">
@@ -45,9 +45,19 @@ export default class CardMovie extends Component {
           className="cover-image"
         />
         <div className="top-overlay">
-          <div className="card-title">
+          {this.props.data
+            && this.props.data.vote_average >= 7.3
+            && this.props.data.vote_average <= 7.5 ?
+            <div className="paid-logo">
+              <FaMoneyBillWave />
+            </div>
+            :
+            <div className="card-title">
               {this.convertToRupiah(this.showPrice(this.props.data.vote_average))}
-          </div>
+            </div>
+          }
+
+
         </div>
       </Card>
     )
