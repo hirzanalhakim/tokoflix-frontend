@@ -1,0 +1,64 @@
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+} */
+
+.cover-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #000;
+  overflow: hidden;
+  width: 100%;
+  height: 10%;
+  opacity: 0.6;
+  transition: .5s ease;
+}
+
+.top-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: #000;
+  overflow: hidden;
+  width: 100%;
+  height:10%;
+  opacity: 0.6;
+  transition: .5s ease;
+}
+
+.card-container:hover .overlay {
+  height: 95px;
+}
+
+.card-title {
+  color: white;
+  font-size: 15px;
+  padding: 3px;
+  text-align: center;
+}
+
+.detail-overlay {
+  margin: 0
+}
+.error-template {padding: 40px 15px;text-align: center;}
+.error-actions {margin-top:15px;margin-bottom:15px;}
+.error-actions .btn { margin-right:10px; }
