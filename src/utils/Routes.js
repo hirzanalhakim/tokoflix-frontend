@@ -1,5 +1,5 @@
 import Home from '../containers/Home';
-import Movie from '../containers/Movie';
+import MovieDetail from '../containers/MovieDetail';
 import NotFound from '../containers/NotFound';
 
 const Routes = [
@@ -11,7 +11,7 @@ const Routes = [
   {
     path: '/:movie/:id',
     exact: true,
-    component: Movie,
+    component: MovieDetail,
   },
   {
     component: NotFound,

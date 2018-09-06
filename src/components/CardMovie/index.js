@@ -1,31 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardImg } from 'reactstrap';
 import * as moment from 'moment';
 import { FaMoneyBillWave } from 'react-icons/fa';
+import { convertToRupiah, showPrice, myFilm } from '../../utils/PublicFunc';
 
 export default class CardMovie extends Component {
-
-  showPrice = (rating) => {
-    let price = 0;
-    if (rating <= 3) {
-      price = 3500;
-    } else if (rating > 3 && rating <= 6) {
-      price = 8250;
-    } else if (rating > 6 && rating <= 8) {
-      price = 16350;
-    } else {
-      price = 21250;
-    }
-    return price;
+  static propTypes = {
+    clickCard: PropTypes.func.isRequired,
+    data: PropTypes.object.isRequired
   }
-
-  convertToRupiah = (angka) => {
-    var rupiah = '';
-    var angkarev = angka.toString().split('').reverse().join('');
-    for (var i = 0; i < angkarev.length; i++) if (i % 3 === 0) rupiah += angkarev.substr(i, 3) + '.';
-    return 'Rp. ' + rupiah.split('', rupiah.length - 1).reverse().join('');
-  }
-
   render() {
     return (
       <Card style={{ marginBottom: '15px' }} className="card-container" onClick={this.props.clickCard}>
@@ -45,15 +29,13 @@ export default class CardMovie extends Component {
           className="cover-image"
         />
         <div className="top-overlay">
-          {this.props.data
-            && this.props.data.vote_average >= 7.3
-            && this.props.data.vote_average <= 7.5 ?
+          {myFilm(this.props.data.vote_average) ?
             <div className="paid-logo">
               <FaMoneyBillWave />
             </div>
             :
             <div className="card-title">
-              {this.convertToRupiah(this.showPrice(this.props.data.vote_average))}
+              {convertToRupiah(showPrice(this.props.data.vote_average))}
             </div>
           }
 

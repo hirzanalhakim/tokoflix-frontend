@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Container, Row, Col, Button } from 'reactstrap';
 
 export default class NotFound extends Component {
+  static propTypes = {
+    history: PropTypes.object.isRequired
+  }
   render() {
     return (
       <Container>

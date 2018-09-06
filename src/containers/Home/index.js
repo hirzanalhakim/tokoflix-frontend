@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Row,
   Container,
@@ -10,13 +11,20 @@ import { connect } from 'react-redux';
 import addMovieList from '../../action';
 
 class Home extends Component {
+  static propTypes = {
+    movie: PropTypes.object.isRequired,
+    addMovieList: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired
+  }
   constructor(props) {
     super(props);
     this.state = {
       dataMovie: this.props.movie.movieList,
       loading: false,
       page: this.props.movie.page,
-      canLoad: true
+      canLoad: true,
+      loadFail: false,
+      message: ''
     }
   }
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -71,7 +79,11 @@ class Home extends Component {
         })
       })
       .catch((err) => {
-        console.error('Error:', err)
+        this.setState({
+          loading: false,
+          loadFail: true,
+          message: err.message
+        })
       });
   }
 
